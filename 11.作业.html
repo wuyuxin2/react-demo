@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+    <script src="data.js"></script>
+    <style>
+        .item{
+            width: 200px;
+            height: 400px;
+            
+        }
+        .content{
+            float: left;
+        }
+        .img{
+            float: left;
+            margin-right: 20px;
+            height: 160px;
+        }
+        .panel {
+            border: 1px solid #000;
+            width: 80%;
+        }
+        .title {
+            margin: 0;
+            padding: 10px;
+            background: #ccc;
+        }
+        p.message {
+            color: #aaa;
+        }
+        p.vip {
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="app"></div>
+
+    <!-- <Panel>
+        <List>
+            <book></book>
+        </List>
+    </Panel> -->
+
+    <script type="text/babel">
+        class Book extends React.Component {
+            render() {
+                return (
+                    <div className="item" key={index}>
+                        <div className="img">
+                            <img src={this.props.image}></img>
+                        </div>
+                                            
+                        <div className="content">
+                            <ul>
+                                <li>{this.props.author}</li>
+                                <li>{this.props.binding}</li>
+                                <li>{this.props.publisher}</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                )
+            }
+        }
+        class List extends React.Component {
+            render() {
+                return (
+                    <div>
+                        {
+                            this.props.data.map( (item, index) => {
+                                return (
+                                    <div className="item" key={index}>
+                                        <Book data={item}></Book>
+                                    </div>
+                                )
+                            } )
+                        }
+                    </div>
+
+                )
+            }
+        }
+        class Panel extends React.Component {
+            render() {
+                return (
+                    <div>
+                       <p> 豆瓣图书 </p>
+                       <List data={books}></List>
+                    </div>
+
+                )
+            }
+
+        }
+
+        ReactDOM.render(
+            <Panel data={books} />,
+            document.getElementById('app')
+        );
+    </script>
+
+</body>
+</html>
